@@ -1,37 +1,14 @@
 // server/userRoutes.js
 const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { registrarUsuario } = require('../controllers/usuarioController');
+const { registrarUsuario, actualizarConfiguracion } = require('../controllers/usuarioController');
+const User = require('../models/User'); // Asegúrate de que la ruta sea correcta
 
+const router = express.Router();
 
-// Suponiendo que tienes un modelo de usuario
-const User = require('./models/User'); 
-
-// Ruta para registrar un usuario
-router.post('/register', async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    // Comprobar si el usuario ya existe
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Usuario ya existe' });
-    }
-
-    // Hashear la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Crear nuevo usuario
-    const newUser = new User({ username, password: hashedPassword });
-    await newUser.save();
-
-    res.status(201).json({ message: 'Usuario registrado con éxito' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al registrar usuario', error });
-  }
-});
+// Ruta para registrar un usuario (añadida al controlador)
+router.post('/registrar', registrarUsuario);
 
 // Ruta para iniciar sesión
 router.post('/login', async (req, res) => {
@@ -57,8 +34,29 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Error al iniciar sesión', error });
   }
-  // Ruta para registrar un usuario
-router.post('/registrar', registrarUsuario);
+});
+
+// Ruta para actualizar configuración del usuario
+router.put('/update-settings', async (req, res) => {
+  const { userId, voiceSettings, displayName } = req.body;
+
+  try {
+    // Encuentra el usuario por ID y actualiza sus datos
+    const usuario = await User.findByIdAndUpdate(
+      userId,
+      { voiceSettings, displayName },
+      { new: true, runValidators: true }
+    );
+
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Configuración actualizada exitosamente', usuario });
+  } catch (err) {
+    console.error('Error al actualizar configuración:', err);
+    res.status(400).json({ error: 'Error al actualizar configuración', details: err.message });
+  }
 });
 
 module.exports = router;

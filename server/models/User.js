@@ -6,6 +6,8 @@ const usuarioSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   passwordHash: { type: String, required: true },
+  voiceSettings: { type: String }, // Nuevo campo para la configuración de voz
+  displayName: { type: String },    // Nuevo campo para el nombre visible
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

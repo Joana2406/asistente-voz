@@ -1,63 +1,53 @@
-// src/components/EditUser.js
+// EditUser.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import './EditUser.css';
+import { getUsers, saveUser } from '../utils/userActions';
 
 const EditUser = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [user, setUser] = useState({ name: '', email: '' });
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/users/${id}`);
-        setUsername(response.data.username);
-        setEmail(response.data.email);
-      } catch (error) {
-        setMessage('Error al cargar datos del usuario.');
-      }
-    };
-    fetchUser();
+    const users = getUsers();
+    const userToEdit = users.find(u => u.id === parseInt(id));
+    if (userToEdit) {
+      setUser(userToEdit);
+    }
   }, [id]);
 
-  const handleSubmit = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await axios.put(`http://localhost:5000/api/users/${id}`, {
-        username,
-        email,
-      });
-      setMessage('Usuario actualizado exitosamente.');
-      navigate('/users');
-    } catch (error) {
-      setMessage('Error al actualizar usuario.');
-    }
+    saveUser(user);
+    navigate('/admin-users');
   };
 
   return (
-    <div className="edit-user-container">
-      <h1 className="edit-user-title">Editar Usuario</h1>
-      <form onSubmit={handleSubmit} className="edit-user-form">
-        <input
-          type="text"
-          placeholder="Nombre de usuario"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="edit-user-input"
-        />
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="edit-user-input"
-        />
-        <button type="submit" className="edit-user-button">Actualizar</button>
-        {message && <p className="edit-user-message">{message}</p>}
+    <div>
+      <h1>Edit User</h1>
+      <form onSubmit={handleSubmit}>
+        <label>Name:
+          <input
+            type="text"
+            name="name"
+            value={user.name}
+            onChange={handleChange}
+          />
+        </label>
+        <label>Email:
+          <input
+            type="email"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">Save</button>
       </form>
     </div>
   );

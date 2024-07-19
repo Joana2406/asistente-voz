@@ -1,4 +1,3 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -15,9 +14,17 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/login', { username, password });
       localStorage.setItem('token', response.data.token); // Guardar token en localStorage
-      navigate('/dashboard'); // Redirigir a otra página
+
+      // Opcional: Manejar la persistencia basada en rememberMe
+      if (rememberMe) {
+        // Configurar un token de expiración más largo o persistir de alguna otra manera
+      }
+
+      // Redirigir a la vista de configuración
+      navigate('/configuracion'); // Redirige a la vista de configuración
     } catch (error) {
-      alert('Error al iniciar sesión');
+      console.error('Error al iniciar sesión:', error.response?.data?.message || error.message);
+      alert('Error al iniciar sesión: ' + (error.response?.data?.message || 'Error desconocido'));
     }
   };
 

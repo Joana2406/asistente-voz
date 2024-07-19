@@ -1,90 +1,67 @@
 /* src/components/Home.css */
+
 .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
+  text-align: center;
+  padding: 20px;
+}
+
+.home-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.home-description {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.loading {
+  margin: 20px auto;
+}
+
+.loading span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+  background: #333;
+  border-radius: 50%;
+  animation: loading 1.2s infinite ease-in-out;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(0.8);
   }
-  
-  .home-title {
-    font-size: 2em;
-    margin-bottom: 10px;
+  100% {
+    transform: scale(1.2);
   }
-  
-  .home-description {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  .loading {
-    --speed-of-animation: 0.9s;
-    --gap: 6px;
-    --first-color: #4c86f9;
-    --second-color: #49a84c;
-    --third-color: #f6bb02;
-    --fourth-color: #f6bb02;
-    --fifth-color: #2196f3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    gap: var(--gap);
-    height: 100px;
-  }
-  
-  .loading span {
-    width: 4px;
-    height: 50px;
-    background: var(--first-color);
-    animation: scale var(--speed-of-animation) ease-in-out infinite;
-  }
-  
-  .loading span:nth-child(2) {
-    background: var(--second-color);
-    animation-delay: -0.8s;
-  }
-  
-  .loading span:nth-child(3) {
-    background: var(--third-color);
-    animation-delay: -0.7s;
-  }
-  
-  .loading span:nth-child(4) {
-    background: var(--fourth-color);
-    animation-delay: -0.6s;
-  }
-  
-  .loading span:nth-child(5) {
-    background: var(--fifth-color);
-    animation-delay: -0.5s;
-  }
-  
-  @keyframes scale {
-    0%, 40%, 100% {
-      transform: scaleY(0.05);
-    }
-  
-    20% {
-      transform: scaleY(1);
-    }
-  }
-  
-  .continue-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .continue-button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+.continue-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.continue-button:hover {
+  background-color: #0056b3;
+}
+
+.links {
+  margin-top: 20px;
+}
+
+.dashboard-link {
+  font-size: 1em;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.dashboard-link:hover {
+  text-decoration: underline;
+}

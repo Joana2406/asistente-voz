@@ -1,0 +1,167 @@
+/* src/components/configuracion.css */
+.configuracion-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  h1, h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .configuracion-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .configuracion-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .configuracion-button {
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+  
+  .configuracion-button:hover {
+    background-color: #0056b3;
+  }
+  
+  button img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .loader-box {
+    position: relative;
+    margin-top: 1rem;
+  }
+  
+  .loading-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  
+  .loading-wrapper .loader {
+    height: 80px;
+    width: 80px;
+    border: 3px solid #e5e5e5;
+    border-radius: 50%;
+    animation: pulse1572 1200ms ease-in-out infinite;
+  }
+  
+  .loading-wrapper .loader .loader-inner {
+    display: block;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: linear-gradient(180deg, rgb(0, 140, 255) 0%, rgb(218, 67, 218) 100%);
+    transform-origin: 50% 50%;
+    border-radius: 50%;
+    animation: innerPulse934 1200ms ease-in-out infinite;
+    animation-delay: 600ms;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  }
+  
+  @keyframes pulse1572 {
+    0% {
+      border: 3px solid #fff;
+    }
+    50% {
+      border: 40px solid #fff;
+    }
+    100% {
+      border: 3px solid #fff;
+    }
+  }
+  
+  @keyframes innerPulse934 {
+    0% {
+      height: 30px;
+      width: 30px;
+    }
+    50% {
+      height: 53.33333px;
+      width: 53.33333px;
+    }
+    100% {
+      height: 30px;
+      width: 30px;
+    }
+  }
+  
+  .spinner-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .spinner {
+    background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
+    width: 100px;
+    height: 100px;
+    animation: spinning82341 1.7s linear infinite, hue 1s ease-in-out infinite;
+    text-align: center;
+    border-radius: 50px;
+    filter: blur(1px);
+    box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+  }
+  
+  .spinner1 {
+    background-color: rgb(36, 36, 36);
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  @keyframes spinning82341 {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes hue {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+  

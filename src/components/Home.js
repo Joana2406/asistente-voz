@@ -1,6 +1,6 @@
 // src/components/Home.js
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="home-title"> Welcome </h1>
+      <h1 className="home-title">Welcome</h1>
       <p className="home-description">IAC voice!</p>
       <div className="loading">
         <span></span>
@@ -24,6 +24,9 @@ const Home = () => {
       <button onClick={handleContinue} className="continue-button">
         Continuar
       </button>
+      <div className="links">
+        <Link to="/user" className="dashboard-link">Ir al Dashboard de Usuario</Link>
+      </div>
     </div>
   );
 };

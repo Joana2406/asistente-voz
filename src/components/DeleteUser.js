@@ -1,23 +1,20 @@
-// src/components/DeleteUser.js
-import React from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// DeleteUser.js
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { deleteUser } from '../utils/userActions';
 
-const DeleteUser = ({ id }) => {
+const DeleteUser = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  const handleDelete = async () => {
-    try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
-      navigate('/users');
-    } catch (error) {
-      console.error('Error al eliminar usuario:', error);
-    }
-  };
+  useEffect(() => {
+    deleteUser(parseInt(id));
+    navigate('/admin-users');
+  }, [id, navigate]);
 
   return (
     <div>
-      <button onClick={handleDelete}>Eliminar Usuario</button>
+      <h1>Deleting User...</h1>
     </div>
   );
 };
