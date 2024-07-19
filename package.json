@@ -41,6 +41,7 @@
     "jest-watch-typeahead": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "mini-css-extract-plugin": "^2.4.5",
+    "mongoose": "^8.5.1",
     "path-browserify": "^1.0.1",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",

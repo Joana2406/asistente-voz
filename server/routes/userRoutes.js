@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { registrarUsuario } = require('../controllers/usuarioController');
+
 
 // Suponiendo que tienes un modelo de usuario
 const User = require('./models/User'); 
@@ -55,6 +57,8 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Error al iniciar sesión', error });
   }
+  // Ruta para registrar un usuario
+router.post('/registrar', registrarUsuario);
 });
 
 module.exports = router;

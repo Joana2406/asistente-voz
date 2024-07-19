@@ -1,11 +1,29 @@
-// server/models/User.js
+// models/usuario.js
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const userSchema = new mongoose.Schema({
+const usuarioSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  email: { type: String, required: true, unique: true },
+  passwordHash: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model('User', userSchema);
+// Método para agregar un usuario
+usuarioSchema.statics.createUsuario = async function(username, email, password) {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  
+  const nuevoUsuario = new this({
+    username,
+    email,
+    passwordHash: hashedPassword,
+  });
 
-module.exports = User;
+  return nuevoUsuario.save();
+};
+
+const Usuario = mongoose.model('Usuario', usuarioSchema);
+
+module.exports = Usuario;

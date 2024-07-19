@@ -1,21 +1,23 @@
+// app.js o server.js
 const express = require('express');
-const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
 
 const app = express();
 
-// Configuración
-app.use(express.json()); // Para manejar JSON en las solicitudes
-
-// Conectar a la base de datos (asegúrate de reemplazar el URI con el correcto)
-mongoose.connect('mongodb://localhost:27017/tu-base-de-datos', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Middleware para parsear JSON
+app.use(express.json());
 
 // Usar las rutas
-app.use('/api', userRoutes);
+app.use('/api/usuarios', usuarioRoutes);
 
-// Iniciar el servidor
-const PORT = process.env.PORT || 5000;
+// Configurar el puerto
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
+
+// Conectar a MongoDB
+mongoose.connect('mongodb://localhost:27017', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('Conectado a MongoDB'))
+.catch(err => console.error('Error de conexión a MongoDB:', err));
