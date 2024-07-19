@@ -1,0 +1,22 @@
+.register-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.register-title {
+  text-align: center;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-input {
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.register-button {
+  padding: 10px;
+}

@@ -1,0 +1,87 @@
+/* src/components/Login.css */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.checkbox-label {
+  font-size: 16px;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  color: #007bff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+}
+
+.signup-text {
+  font-size: 16px;
+}
+
+.signup-link {
+  font-size: 16px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
